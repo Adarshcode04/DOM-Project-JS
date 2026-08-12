@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>To-Do List Builder</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 40px;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        margin: 5px;
+      }
+
+      ul {
+        margin-top: 20px;
+        padding-left: 20px;
+      }
+
+      li {
+        margin: 10px 0;
+      }
+
+      .delete-btn {
+        margin-left: 10px;
+        color: white;
+        background: rgb(244, 8, 8);
+        border: none;
+        padding: 4px 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To-Do List Builder</h1>
+
+    <input type="text" id="todo-input" placeholder="Enter Task" />
+
+    <button id="add-btn">Add</button>
+    <button id="duplicate-btn">Duplicate Last</button>
+    <button id="priority-btn">Insert at Top</button>
+    <ul id="todo-list"></ul>
+
+    <script>
+        let inputtext = document.getElementById("todo-input");
+        let addbtn = document.getElementById("add-btn");
+        let duplicatbtn = document.getElementById("duplicate-btn");
+        let prioritybtn = document.getElementById("priority-btn");    
+
+          function createNewTask(taskText) {
+            let li = document.createElement("li");
+            li.textContent = taskText;
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.className = "delete-btn";
+
+
+            
+    </script>
+  </body>
+</html>

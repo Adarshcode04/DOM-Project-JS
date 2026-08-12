@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 300px;
+        border: 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+        height: 200px;
+        margin: 20px auto;
+        background-color: #45ae63;
+      }
+
+      .box.hover {
+        background-color: #4587ae;
+        border: 2px solid black;
+      }
+
+      .box.active {
+        background-color: #0ca00f;
+        border: 2px solid black;
+      }
+
+      p {
+        justify-content: center;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <p>Box</p>
+      </div>
+      <p class="status">Status : <span id="status-text">No event yet</span></p>
+      <p id="coordinate">coordinate :</p>
+    </div>
+
+    <script>
+      let box = document.querySelector(".box");
+      let coordinate = document.getElementById("coordinate");
+      let statusText = document.getElementById("status-text");
+
+      box.addEventListener("click", (event) => {
+        console.log("Mouse clicked the box");
+        coordinate.innerHTML = `coordinate : ${event.clientX}, ${event.clientY}`;
+        statusText.innerHTML = "Mouse clicked the box";
+      });
+
+      box.addEventListener("mouseover", (event) => {
+        console.log("Mouse is over the box");
+        coordinate.innerHTML = `coordinate : ${event.clientX}, ${event.clientY}`;
+        statusText.innerHTML = "Mouse is over the box";
+      });
+
+      box.addEventListener("mouseleave", (event) => {
+        console.log("Mouse left the box");
+        coordinate.innerHTML = `coordinate : ${event.clientX}, ${event.clientY}`;
+        statusText.innerHTML = "Mouse left the box";
+      });
+
+      box.addEventListener("mouseenter", (event) => {
+        console.log("Mouse entered the box");
+        coordinate.innerHTML = `coordinate : ${event.clientX}, ${event.clientY}`;
+        statusText.innerHTML = "Mouse entered the box";
+      });
+
+      box.addEventListener("dblclick", (event) => {
+        console.log("Mouse double clicked the box to change the color");
+        box.style.backgroundColor = "blue";
+        coordinate.innerHTML = `coordinate : ${event.clientX}, ${event.clientY}`;
+        statusText.innerHTML =
+          "Mouse double clicked the box to change the color";
+      });
+    </script>
+  </body>
+</html>

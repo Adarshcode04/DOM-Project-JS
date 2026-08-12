@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive text Manipulator</title>
+    <style>
+        body{
+            background-color: lightgray;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .main{
+            width: 500px;
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid black;
+        }
+
+        h1{
+            font-size: 35px;
+            text-shadow: black;
+            border-color:rgb(70, 16, 232);
+            margin-bottom: 20px;
+        }
+
+        input{
+            width: 90%;
+            height: 18px;
+            font-size: 18px;
+
+            margin-bottom: 20px;
+            padding: 5px;
+        }
+
+        p{
+            font-size: 18px;
+            text-shadow: black;
+            border-color: rgb(29, 115, 86);
+            margin-bottom: 20px;
+        }
+
+        button{
+            width: 150px;
+            height: 40px;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+button:hover{
+    background-color: rgb(70, 16, 232);
+}
+
+.highlight{
+    background-color: rgb(158, 25, 178);
+}
+    </style>
+</head>
+<body>
+    <div  class = "main">
+    <h1>Interactive text Manipulator</h1>
+    <input id ="Input" placeholder = "Type Something....."></input>
+
+    <p>Your text will appear here.</p>
+
+    <button id = "btn1">Show text</button>
+
+    <button id = "btn2">Clear</button>
+
+        <br/> <br/>
+
+    <button id = "btn3">Uppercase</button>
+
+    <button id = "btn4">Toggle HighLight</button>
+    
+    </div>
+
+    <script>
+let input = document.getElementById("Input");
+let p = document.querySelector("p");
+
+let btn1 = document.getElementById("btn1");
+let btn2 = document.getElementById("btn2");
+let btn3 = document.getElementById("btn3");
+let btn4 = document.getElementById("btn4");
+
+
+btn1.addEventListener("click", function () {
+    p.innerText = input.value;
+});
+
+btn2.addEventListener("click", function () {
+    input.value = "";
+    p.innerText = "";
+});
+
+btn3.addEventListener("click", function () {
+    p.innerText = p.innerText.toUpperCase();
+});
+
+btn4.addEventListener("click", function () {
+    p.classList.toggle("highlight");
+});
+</script>
+    
+</body>
+</html>

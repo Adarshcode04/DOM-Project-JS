@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        border-radius: 20px;
+        width: min(600px, 100%);
+        max-width: 600px;
+        height: auto;
+        background: white;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        text-align: center;
+      }
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin-top: 50px;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        width: 100vh;
+      }
+
+      h1 {
+        color: #0d0c0c;
+        font-size: 50px;
+      }
+
+      p {
+        background-color: rgb(17, 206, 206);
+        border-radius: 10px;
+        padding: 10px;
+      }
+      #count {
+        font-size: 60px;
+        color: blue;
+        margin: 20px 0;
+      }
+
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      #Start {
+        background-color: green;
+      }
+
+      #Stop {
+        background-color: red;
+      }
+
+      #Resume {
+        background-color: orange;
+      }
+
+      #Reset {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1 class="Counter App">Counter App</h1>
+      <p>Description : This app is for you to count and set time for you</p>
+      <h2 id="count">0</h2>
+      <button id="Start">Start</button>
+      <button id="Stop">Stop</button>
+      <button id="Resume">Resume</button>
+      <button id="Reset">Reset</button>
+    </div>
+
+    <script>
+      let count = 0;
+      let clock = null;
+
+      const countEl = document.getElementById("count");
+      const startBtn = document.getElementById("Start");
+      const stopBtn = document.getElementById("Stop");
+      const resumeBtn = document.getElementById("Resume");
+      const resetBtn = document.getElementById("Reset");
+
+      function updateDisplay() {
+        countEl.innerText = count;
+      }
+
+      function Start() {
+        if (clock) return;
+        clock = setInterval(() => {
+          count++;
+          updateDisplay();
+        }, 1000);
+      }
+
+      function Stop() {
+        if (!clock) return;
+        clearInterval(clock);
+        clock = null;
+      }
+
+      function Resume() {
+        if (clock) return;
+        Start();
+      }
+
+      function Reset() {
+        Stop();
+        count = 0;
+        updateDisplay();
+      }
+
+      startBtn.addEventListener("click", Start);
+      stopBtn.addEventListener("click", Stop);
+      resumeBtn.addEventListener("click", Resume);
+      resetBtn.addEventListener("click", Reset);
+    </script>
+  </body>
+</html>
