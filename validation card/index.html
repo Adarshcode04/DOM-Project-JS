@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation card</title>
+    <style>
+        body{
+            background: rgb(17, 16, 15);
+            padding: 40px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 80vh;
+        }
+        .container{
+            background-color: white;
+           height: 400px;
+           width: 300px;
+           border : 2px solid white;
+           justify-content: center;
+           align-items: center;
+           text-align: center;
+        }
+        h1{
+            color:rgb(52, 2, 98)        }
+        
+    </style>
+</head>
+<body>
+    <form>
+        <!-- <h1>Form Validation</h1> -->
+        <!-- <br> -->
+        <div class="container">
+        <h1>Form Validation</h1>
+
+        <div class="main">
+            <label for = "name">Name
+                <br>
+                <input id = "Name" placeholder="Name">
+                <p  id = "Name-Error"></p>
+        </label>
+         </div>
+         <br>
+
+        <div class="main2">
+        <label for = "Email">Email
+            <br>
+            <input id = "Email" placeholder="Email">
+            <p id = "Email-error"></p>
+        </label>
+        </div>
+        <br>
+        
+        <div class="main3">
+        <label for = "Password">Password
+            <br>
+            <input id = "password" placeholder="Password">
+            <p id = "password-error"></p>
+        </label>
+        </div>
+        <br>
+      <button id = "Register" >Register</button>
+      
+    </form>
+    </div>
+
+    <script>
+    const form = document.querySelector("form");
+
+    const name = document.getElementById("Name");
+    const email = document.getElementById("Email");
+    const password = document.getElementById("password");
+
+    const nameError = document.getElementById("Name-Error");
+    const emailError = document.getElementById("Email-error");
+    const passwordError = document.getElementById("password-error");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        nameError.innerHTML = "";
+        emailError.innerHTML = "";
+        passwordError.innerHTML = "";
+
+        let valid = true;
+
+        if (name.value.trim() === "") {
+            nameError.innerHTML = "Name is required";
+            nameError.style.color = "red";
+            valid = false;
+        }
+
+        if (email.value.trim() === "") {
+            emailError.innerHTML = "Email is required";
+            emailError.style.color = "red";
+            valid = false;
+        } 
+        else if (!email.value.includes("@")) {
+            emailError.innerHTML = "Enter a valid email";
+            emailError.style.color = "red";
+            valid = false;
+        }
+
+        if (password.value.trim() === "") {
+            passwordError.innerHTML = "Password is required";
+            passwordError.style.color = "red";
+            valid = false;
+        } 
+        else if (password.value.length < 6) {
+            passwordError.innerHTML = "Password must be at least 6 characters";
+            passwordError.style.color = "red";
+            valid = false;
+        }
+        if (valid) {
+            alert("Registration Successful!");
+            form.reset();
+        }
+    });
+</script>
+    
+</body>
+</html>
