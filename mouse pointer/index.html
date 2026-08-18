@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .box {
+        width: 300px;
+        height: 200px;
+        margin: 20px auto;
+        background: linear-gradient(135deg, #45ae63 0%, #3a8a52 100%);
+        border: 3px solid #2d6640;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 4px 15px rgba(69, 174, 99, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        transform: rotate(45deg);
+        transition: transform 0.6s;
+      }
+
+      .box:hover {
+        background: linear-gradient(135deg, #4587ae 0%, #2d5a7a 100%);
+        border-color: #1a3a4d;
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 10px 30px rgba(69, 135, 174, 0.5);
+      }
+
+      .box.active {
+        background: linear-gradient(135deg, #0ca00f 0%, #078a09 100%);
+        border-color: #045a04;
+        transform: scale(0.95);
+        box-shadow: 0 6px 20px rgba(12, 160, 15, 0.6);
+        animation: pulse 0.6s ease-out;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(0.92);
+        }
+        100% {
+          transform: scale(0.95);
+        }
+      }
+
+      .box.double-clicked {
+        background: linear-gradient(135deg, #3b5bdb 0%, #2a3fa8 100%);
+        border-color: #1a2570;
+        animation: rotate-spin 0.6s ease-out;
+      }
+
+      @keyframes rotate-spin {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        100% {
+          transform: rotate(360deg) scale(1.1);
+        }
+      }
+
+      .box p {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 1;
+      }
+
+      .status {
+        font-size: 16px;
+        color: #333;
+        margin: 20px 0 10px;
+        font-weight: 500;
+      }
+
+      #status-text {
+        color: #667eea;
+        font-weight: bold;
+        padding: 5px 10px;
+        background: #f0f0f0;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      #coordinate {
+        font-size: 14px;
+        color: #666;
+        font-family: "Monaco", "Courier New", monospace;
+        margin: 10px 0 0;
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+
+      #coordinate::before {
+        content: "📍 ";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <p>Box</p>
+      </div>
+      <p class="status">Status : <span id="status-text">No event yet</span></p>
+      <p id="coordinate">coordinate :</p>
+    </div>
+
+    <script>
+      let box = document.querySelector(".box");
+      let coordinate = document.getElementById("coordinate");
+      let statusText = document.getElementById("status-text");
+      let clickTimeout;
+      let doubleClickTimeout;
+
+      // Update coordinates as mouse moves over box
+      box.addEventListener("mousemove", (event) => {
+        coordinate.innerHTML = `coordinate : X: ${event.clientX}px, Y: ${event.clientY}px`;
+      });
+
+      // Click event
+      box.addEventListener("click", (event) => {
+        console.log("Mouse clicked the box");
+        box.classList.add("active");
+        statusText.innerHTML = "Mouse clicked the box 👆";
+
+        // Remove active class after animation
+        clearTimeout(clickTimeout);
+        clickTimeout = setTimeout(() => {
+          box.classList.remove("active");
+        }, 600);
+      });
+
+      // Hover enter
+      box.addEventListener("mouseenter", (event) => {
+        console.log("Mouse entered the box");
+        statusText.innerHTML = "Mouse entered the box ✨";
+        coordinate.innerHTML = `coordinate : X: ${event.clientX}px, Y: ${event.clientY}px`;
+      });
+
+      // Hover over
+      box.addEventListener("mouseover", (event) => {
+        console.log("Mouse is over the box");
+      });
+
+      // Hover leave
+      box.addEventListener("mouseleave", (event) => {
+        console.log("Mouse left the box");
+        statusText.innerHTML = "Mouse left the box 👋";
+        coordinate.innerHTML = `coordinate : X: ${event.clientX}px, Y: ${event.clientY}px`;
+      });
+
+      // Double click event
+      box.addEventListener("dblclick", (event) => {
+        console.log("Mouse double clicked the box");
+        box.classList.add("double-clicked");
+        statusText.innerHTML = "Double clicked! 🎉 Box rotated";
+
+        // Remove animation class after it completes
+        clearTimeout(doubleClickTimeout);
+        doubleClickTimeout = setTimeout(() => {
+          box.classList.remove("double-clicked");
+        }, 600);
+      });
+
+      // Mouse down effect
+      box.addEventListener("mousedown", (event) => {
+        statusText.innerHTML = "Pressing down... 🖱️";
+      });
+
+      // Mouse up effect
+      box.addEventListener("mouseup", (event) => {
+        statusText.innerHTML = "Released 📤";
+      });
+    </script>
+  </body>
+</html>
