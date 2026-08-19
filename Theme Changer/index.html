@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Changer</title>
+
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: black;
+        font-family: Arial, sans-serif;
+        transition: 0.3s;
+      }
+
+      .main {
+        width: 400px;
+        padding: 30px;
+        border: 2px solid black;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 35px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: black;
+        color: white;
+      }
+      .dark {
+        background-color: black;
+        color: white;
+      }
+
+      .dark .main {
+        border-color: white;
+      }
+
+      .dark button {
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>Theme Changer</h1>
+
+      <p>Click the button to switch the theme.</p>
+
+      <button id="btn">Toggle Theme</button>
+    </div>
+
+    <script>
+      function toggleTheme() {
+        let body = document.querySelector("body");
+        body.classList.toggle("dark");
+      }
+
+      let btn = document.querySelector("#btn");
+      btn.addEventListener("click", toggleTheme);
+    </script>
+  </body>
+</html>
