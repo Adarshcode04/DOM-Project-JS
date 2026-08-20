@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard Event Demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #e9eef5;
+        font-family: Arial, sans-serif;
+      }
+
+      .main {
+        background: #f8f7f7;
+        padding: 36px;
+        border: 2px solid black;
+        border-radius: 10px;
+        width: min(100%, 560px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 12px 30px rgba(28, 42, 60, 0.14);
+      }
+
+      h1,
+      p {
+        margin: 0;
+        text-align: center;
+      }
+
+      p {
+        color: #4b5563;
+      }
+
+      input {
+        width: min(100%, 380px);
+        padding: 14px 16px;
+        border: 1px solid #aab4c2;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      input:focus {
+        outline: 3px solid rgba(37, 99, 235, 0.2);
+        border-color: #2563eb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Keyboard Event Demo</h1>
+      <p>click the input box and press keys</p>
+      <input id="input-box" type="text" placeholder="Type something..." />
+      <br />
+
+      <input id="input-box2" type="text" placeholder="Press a key..." />
+    </div>
+
+    <script>
+      const inputBox = document.getElementById("input-box");
+      const inputBox2 = document.getElementById("input-box2");
+
+      inputBox.addEventListener("keydown", function (event) {
+        console.log("Key pressed:", event.key);
+        inputBox2.value = event.key;
+      });
+
+      inputBox2.addEventListener("keydown", function (event) {
+        console.log("Second input key:", event.key);
+        inputBox.value = inputBox.value + event.key;
+      });
+    </script>
+  </body>
+</html>
