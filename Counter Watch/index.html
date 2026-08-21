@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+
+    <style>
+        /* main{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        } */
+
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+            font-family: Arial, sans-serif;
+        }
+
+        .main{
+            width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1{
+            margin-bottom: 15px;
+        }
+
+        p{
+            background: cyan;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        #count{
+            font-size: 70px;
+            color: blue;
+            margin-bottom: 20px;
+        }
+
+        button{
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #Start{
+            background: green;
+        }
+
+        #Stop{
+            background: red;
+        }
+
+        #Resume{
+            background: orange;
+        }
+
+        #Reset{
+            background: gray;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+<div class="main">
+    <h1>Counter App</h1>
+
+    <p>Description: This app is for you to count and set time.</p>
+
+    <h2 id="count">0</h2>
+
+    <button id="Start">Start</button>
+    <button id="Stop">Stop</button>
+    <button id="Resume">Resume</button>
+    <button id="Reset">Reset</button>
+</div>
+
+<script>
+
+let count = 0;
+let clock = null;
+
+function updateCount() {
+    document.getElementById("count").innerText = count;
+}
+
+function Start() {
+    if (clock == null) {
+        clock = setInterval(function () {
+            count++;
+            updateCount();
+        }, 1000);
+    }
+}
+
+function Stop() {
+    clearInterval(clock);
+    clock = null;
+}
+
+function Resume() {
+    if (clock == null) {
+        clock = setInterval(function () {
+            count++;
+            updateCount();
+        }, 1000);
+    }
+}
+
+function Reset() {
+    clearInterval(clock);
+    clock = null;
+    count = 0;
+    updateCount();
+}
+
+document.getElementById("Start").addEventListener("click", Start);
+document.getElementById("Stop").addEventListener("click", Stop);
+document.getElementById("Resume").addEventListener("click", Resume);
+document.getElementById("Reset").addEventListener("click", Reset);
+
+</script>
+
+</body>
+</html>
