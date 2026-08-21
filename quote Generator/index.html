@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Generator</title>
+
+    <style>
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 50px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .box {
+        width: 500px;
+        max-width: 100%;
+        background-color: white;
+        padding: 30px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #555;
+      }
+
+      button {
+        width: 180px;
+        height: 45px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        background-color: #4a90e2;
+        color: white;
+      }
+
+      button:hover {
+        background-color: #357abd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <h1>Quote Generator</h1>
+
+      <p class="quote_text">Click the button to generate new Quote</p>
+
+      <p class="author"></p>
+
+      <button id="btn">Generate New Quote</button>
+    </div>
+
+    <script>
+      const quotes = [
+        {
+          text: "A rose by any other name would smell as sweet.",
+          author: "William Shakespeare",
+        },
+        {
+          text: "I have always depended on the kindness of strangers.",
+          author: "Blanche Dubois",
+        },
+        {
+          text: "The future depends on what you do today.",
+          author: "Mahatma Gandhi",
+        },
+        {
+          text: "Dream big and dare to fail.",
+          author: "Norman Vaughan",
+        },
+      ];
+
+      let btn = document.querySelector("#btn");
+      let quoteText = document.querySelector(".quote_text");
+      let author = document.querySelector(".author");
+
+      function generateQuote() {
+        let randomIndex = Math.floor(Math.random() * quotes.length);
+
+        quoteText.innerText = quotes[randomIndex].text;
+
+        author.innerText = "- " + quotes[randomIndex].author;
+      }
+
+      btn.addEventListener("click", generateQuote);
+    </script>
+  </body>
+</html>
