@@ -78,21 +78,26 @@
 
                 <div class="FAQ">
                     <div class="question">What does Quesry Selctor Do?</div>
-                <div class="answer">bfiufhfhwwowuugwoguwgprjgrihjgjrspgjfkfeofef0eif</div>
+                <div class="answer">QuerySelector() is a JavaScript DOM method used to select the first HTML element that matches a CSS selector.</div>
                 </div>
 
                 <div class="FAQ">
                     <div class="question">What is Class List?</div>
-                    <div class="answer">kerkjfieffneofenfofdfnducvmn   dvldvniff</div>
+                    <div class="answer">ClassList is a JavaScript property used to add, remove, toggle, or check CSS classes of an HTML element.</div>
                 </div>
 
         </div>
     </div>
     <script>
+        
      let items = document.querySelectorAll(".FAQ");
+        
     items.forEach((item) => {
+        
     let question = item.querySelector(".question");
+        
     question.addEventListener("click", () => {
+        
         item.classList.toggle("active");
     });
 });
