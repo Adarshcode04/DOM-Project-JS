@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA Accordion</title>
+    <style>
+        body{
+            background: #f4f4f4;
+            padding: 40px;
+            border: 2px solid black;
+            /* display: flex; */
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            /* height: 100px; */
+
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p{
+            text-align: center;
+            color: rgb(0, 0, 0);
+            margin-bottom: 30px;
+        }
+
+        .container{
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            width: 500px;
+            margin: auto;
+        }
+
+        .FAQ{
+            background: white;
+            border: 1px solid #010101;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .question{
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background: #f8f8f8;
+            cursor: pointer;
+        }
+
+        .answer{
+            display: none;
+            padding: 15px;
+            border-top: 2px solid #ddd;
+            color: #000000;
+        }
+
+        .FAQ.active .answer{
+            display: block;
+            background-color:  rgb(207, 195, 195);
+        }
+    </style>
+</head>
+<body>
+    <h1>Frquently Asked Question</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga saepe porro nobis nesciunt laboriosam amet voluptate dolor</p>
+
+    <div class = "container">
+        <div class = "FAQ">
+            <div class="question">What is DOM?</div>    
+                <div class="answer">Dom stands for data Object Model, it works on js....</div>
+                </div>
+
+
+                <div class="FAQ">
+                    <div class="question">What does Quesry Selctor Do?</div>
+                <div class="answer">bfiufhfhwwowuugwoguwgprjgrihjgjrspgjfkfeofef0eif</div>
+                </div>
+
+                <div class="FAQ">
+                    <div class="question">What is Class List?</div>
+                    <div class="answer">kerkjfieffneofenfofdfnducvmn   dvldvniff</div>
+                </div>
+
+        </div>
+    </div>
+    <script>
+     let items = document.querySelectorAll(".FAQ");
+
+
+     //selecting all questions
+     
+items.forEach((item) => {
+    let question = item.querySelector(".question");
+
+
+    //active the answer 
+    question.addEventListener("click", () => {
+        item.classList.toggle("active");
+    });
+});
+    </script>
+    
+</body>
+</html>
